@@ -1,0 +1,144 @@
+
+/********************** Layout ***********************/
+
+body {
+  margin: 0em;
+}
+
+header, footer {
+  background-color: #f1f1f1;
+  padding: 2em;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.warning {
+  text-align: center;
+  color: #DD5763;
+  font-weight: bold;
+}
+
+section {
+  padding: 1em;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+}
+
+article {
+  clear: both;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  padding: 1em;
+}
+
+article p {
+  min-height: 10em;
+}
+p img {
+  float:left;
+  height: 10em;
+  margin-right: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+footer {
+  text-align: center;
+  background-color: rgb(50, 50, 50);
+  color: #fff;
+}
+
+/********************** Elements ***********************/
+.help-button {
+  float: right;
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+.help-button img {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.main-cover {
+  text-align: center;
+  width: 100%;
+  height: 20em;
+  margin: 1em;
+}
+.main-cover img {
+  height: 90%;
+}
+
+.race-chat-cover {
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 60%;
+}
+.race-chat-cover img {
+  width: 100%;
+  height: auto;
+}
+.race-chat-cover::after {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 20%;
+  height: 30%;
+  background-image: url('../images/nuage.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: 'Miaaaaaaou !';
+  font-weight: bold;
+  padding-top: 7.3%;
+  text-align: center;
+}
+.race-chat-cover button {
+  margin: 1rem;
+}
+.popup-help {
+  width: 100%;
+  height: 100%;
+  top: 0rem;
+  left: 0rem;
+  position: fixed;
+  background-color: rgba(22,22,22,0.5);
+  border-radius: 0.5rem;
+  z-index: 1;
+  display: none;
+}
+.popup-help .popup {
+  position: relative;
+  margin: 0 auto;
+  top: 25%;
+  width: 75%;
+  height: 50%;
+  background-color: #EFEFEF;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.popup-help .content {
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.popup-help .close-button {
+  position: absolute;
+  float: right;
+  width: 1.5rem;
+  height: 1.5rem;
+  right: 0rem;
+  top: 0.1rem;
+  text-decoration: none;
+  color: grey;
+}
+.popup-help .content span {
+  font-weight: bold;
+}
+/********************* Classes JS **********************/
+.visible, .visible::after {
+  display: block;
+}

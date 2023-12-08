@@ -47,7 +47,18 @@ function createDamier() {
 
 // Les variables globales sont déclarées ici.
 // Uniquement si nécéssaire.
-const jsDamier = document.querySelector('.js-damier');
+let bobby = {
+  dom: null,
+  positionX: 0,
+  positionY: 0
+}
+
+let cat = {
+  dom: null,
+  positionX: 0,
+  positionY: 0
+}
+
 
 /**************************************************************/
 /*                        Fonctions                           */
@@ -69,22 +80,9 @@ function clearCheckboard() {
   }
 }
 function createDamier() {
-  alert("plop");
-  /*const place = document.querySelector(".checkerboard");
-  for (let i = 0; i < place.children.length; i++) {
-    if(place.children[i].className.indexOf("cell") !== -1) {
-      console.log(place.children[i].className+" "+i);
-      if(i % 2 === 0) {
-        let test = " ."+place.children[i].className.replaceAll(" ", ".");
-        console.log(test+" "+i);
-        let cases = document.querySelector(test).classList.add('black');
-      }
-    }
-  }*/
-  //row impair on met sur case impair et sinon sur case pair
   for(let r=1; r<9; r++) { //row
     for(let c=1; c<9; c++) { //col
-      if((r % 2 === 1 && c % 2 === 1) || (r % 2 === 0 && c % 2 === 0)) {
+      if((r + c) % 2 === 0) {
         let row = ".js-row"+r;
         let col = ".js-col"+c;
         let place = row+""+col;
@@ -97,7 +95,7 @@ function createDamier() {
 function createDisco () {
   for(let r=1; r<9; r++) { //row
     for(let c=1; c<9; c++) { //col
-      let colorRand = Math.round(Math.random() * (5 - 1) + 1);
+      let colorRand = Math.round(Math.random() * 5);
       let row = ".js-row"+r;
       let col = ".js-col"+c;
       let newClass = "disco-color"+colorRand;
@@ -119,7 +117,6 @@ function createLaby () {
     [1, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1]
   ];
-  console.log(matrix);
   for(let r = 0; r < 8; r++) {
     for(let c = 0; c < 8; c++) {
       if(matrix[r][c] === 1) {
@@ -193,7 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // afficher "pull" sur fond orange (utiliser la classe "pull")
   // Enfin, s'il double clique sur la case,
   // afficher "boom" sur fond rouge (utiliser la classe "boom")
-
+  document.addEventListener('mousedown', function(event) {
+    event.target.classList.add('push');
+  });
+  document.addEventListener('mouseup', function(event) {
+    event.target.classList.add('pull');
+  });
+  document.addEventListener('dblclick', function(event) {
+    event.target.classList.add('boom');
+  });
 
   // 5. Lorsque l'utilisateur appuie sur une des 4 flèches du clavier,
   // Afficher bobby et le déplacer sur le grille (de case en case)
@@ -201,6 +206,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // TIP : Ajouter la classe visible sur la div ayant l'id "bobby"
   // Le déplacer de case en case
   // dans la direction de la flèche appuyée
+  document.addEventListener('keydown', function(event) {
+    let i = 0;
+    if(event.keyCode === 37 || event.keyCode === 39 || event.keyCode === 38 || event.keyCode === 40) { //37 gauche 39 droite 38 haut 40 bas
+      i += 1;
+      let deplace = 3 * i;
+      console.log(deplace);
+      let bobby = document.querySelector('#bobby')
+      bobby.classList.add('visible');
+      if(event.keyCode === 37) {
+        let text = "translate(-"+deplace+"em)";
+        bobby.style.transform = text;
+        bobby.style.transition = "3s";
+      } else if(event.keyCode === 38) {
+        let text = "translateY(-"+deplace+"em)";
+        bobby.style.transform = text;
+        bobby.style.transition = "3s";
+      } else if(event.keyCode === 39) {
+        let text = "translate("+deplace+"em)";
+        bobby.style.transform = text;
+        bobby.style.transition = "3s";
+      } else if(event.keyCode === 40) {
+        let text = "translateY("+deplace+"em)";
+        bobby.style.transform = text;
+        bobby.style.transition = "3s";
+      }
+    }
+  });
 
 
   // 6. Chaque seconde, un chat se déplace aléatoirement sur les cases du plateau
